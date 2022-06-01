@@ -3,8 +3,15 @@ user=$(whoami)
 
 # curl
 echo "Installing cURL"
-sudo apt install curl
-echo | sudo apt-get update && sudo apt-get upgrade
+echo | sudo apt install curl
+echo | sudo apt-get update && echo | sudo apt-get upgrade
+
+# git
+echo  "Installing Git\n"
+echo | sudo add-apt-repository ppa:git-core/ppa 
+echo | sudo apt update && echo | apt install git -y
+git config --global user.name "Garvit K Rai"
+git config --global user.email "garvitrai013@gmail.com"
 
 # zsh
 echo "Installing Zsh"
@@ -19,44 +26,37 @@ echo "Installing powerlevel10k"
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
 echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
 
-# git
-echo  "Installing Git\n"
-echo | sudo add-apt-repository ppa:git-core/ppa 
-echo | sudo apt update && apt install git -y
-git config --global user.name "Garvit K Rai"
-git config --global user.email "garvitrai013@gmail.com"
-
 # github cli
 echo "Installing GitHub CLI\n"
 curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
-sudo apt update
-sudo apt install gh
+echo | sudo apt update
+echo | sudo apt install gh
 
 # snap
 echo "Installing Snap"
-sudo apt install snapd
-echo | sudo apt update && sudo apt upgrade
+echo | sudo apt install snapd
+echo | sudo apt update && echo | sudo apt upgrade
 
 # vscode
 echo "Installing VSCode"
-sudo snap install code --classic
+echo | sudo snap install code --classic
 
 # android studio
 sudo snap install android-studio --classic
-sudo apt-get install cpu-checker
+echo | sudo apt-get install cpu-checker
 cpu_check=$(egrep -c '(vmx|svm)' /proc/cpuinfo)
 if [ $cpu_check -gt 0 ]
 then
     kvm-ok
-    sudo apt-get install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils
+    echo | sudo apt-get install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils
 else
     echo "Hardware acceleration cannot be implemented\n"
 fi
 
 # linuxbrew
 echo "Installing Brew"
-sudo apt-get install build-essential
+echo | sudo apt-get install build-essential
 echo "\n" | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
@@ -99,7 +99,7 @@ asdf plugin-add flutter
 # chrome
 echo "Installing Google Chrome"
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo apt install ./google-chrome-stable_current_amd64.deb
+echo | sudo apt install ./google-chrome-stable_current_amd64.deb
 
 # zoom
 echo "Installing Zoom"
@@ -123,14 +123,14 @@ sudo snap install vlc --classic
 
 # gnome tweaks
 echo "Installing Gnome Tweaks"
-sudo apt install gnome-tweaks --yes
+echo | sudo apt install gnome-tweaks --yes
 
 # ulauncher
 echo "Installing Ulauncher"
-echo | sudo add-apt-repository ppa:agornostal/ulauncher && sudo apt update && sudo apt install ulauncher
+echo | sudo add-apt-repository ppa:agornostal/ulauncher && echo | sudo apt update && echo | sudo apt install ulauncher
 
 # tlp
 echo "Installing TLP"
 echo | sudo add-apt-repository ppa:linrunner/tlp
-sudo apt update
+echo | sudo apt update
 echo "y\n" | sudo apt install tlp tlp-rdw
