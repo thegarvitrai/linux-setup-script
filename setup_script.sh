@@ -76,25 +76,30 @@ brew install gcc
 # python
 echo "Installing Python"
 asdf plugin-add python
+asdf install python latest
 
 # java
 echo "Installing Java"
 asdf plugin-add java https://github.com/halcyon/asdf-java.git
+asdf install java latest
 
 # node
 echo "Installing NodeJS"
 brew install gpg
 asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+asdf install nodejs latest
 
 # dart
 echo "Installing Dart"
 brew install openssl readline
 asdf plugin-add dart https://github.com/patoconnor43/asdf-dart.git
+asdf install dart latest
 echo "export PATH=\"$(asdf where flutter)/bin\":\"$PATH\""
 
 # flutter
 echo "Installing Flutter"
 asdf plugin-add flutter 
+asdf install flutter latest
 
 # chrome
 echo "Installing Google Chrome"
