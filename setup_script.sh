@@ -3,6 +3,10 @@
 # variables
 user=$(whoami)
 
+# inputs
+read -p "Enter your name: " name
+read -p "Enter your email: " email
+
 # curl
 echo "Installing cURL"
 echo | sudo apt install curl
@@ -12,8 +16,8 @@ echo | sudo apt-get update && echo | sudo apt-get upgrade
 echo  "Installing Git\n"
 echo | sudo add-apt-repository ppa:git-core/ppa 
 echo | sudo apt update && echo | apt install git -y
-git config --global user.name "Garvit K Rai"
-git config --global user.email "garvitrai013@gmail.com"
+git config --global user.name "$name"
+git config --global user.email "$email"
 
 # zsh
 echo "Installing Zsh"
@@ -39,22 +43,6 @@ echo | sudo apt install gh
 echo "Installing Snap"
 echo | sudo apt install snapd
 echo | sudo apt update && echo | sudo apt upgrade
-
-# vscode
-echo "Installing VSCode"
-echo | sudo snap install code --classic
-
-# android studio
-sudo snap install android-studio --classic
-echo | sudo apt-get install cpu-checker
-cpu_check=$(egrep -c '(vmx|svm)' /proc/cpuinfo)
-if [ $cpu_check -gt 0 ]
-then
-    kvm-ok
-    echo | sudo apt-get install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils
-else
-    echo "Hardware acceleration cannot be implemented\n"
-fi
 
 # linuxbrew
 echo "Installing Brew"
@@ -103,6 +91,22 @@ echo "Installing Flutter"
 asdf plugin-add flutter 
 asdf install flutter latest
 
+# vscode
+echo "Installing VSCode"
+echo | sudo snap install code --classic
+
+# android studio
+sudo snap install android-studio --classic
+echo | sudo apt-get install cpu-checker
+cpu_check=$(egrep -c '(vmx|svm)' /proc/cpuinfo)
+if [ $cpu_check -gt 0 ]
+then
+    kvm-ok
+    echo | sudo apt-get install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils
+else
+    echo "Hardware acceleration cannot be implemented\n"
+fi
+
 # chrome
 echo "Installing Google Chrome"
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -141,5 +145,9 @@ echo "Installing TLP"
 echo | sudo add-apt-repository ppa:linrunner/tlp
 echo | sudo apt update
 echo "y\n" | sudo apt install tlp tlp-rdw
+
+function finish {
+    rm -rf "$user $name $email"
+}
 
 trap finish EXIT
