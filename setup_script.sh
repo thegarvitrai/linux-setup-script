@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # variables
 user=$(whoami)
 
@@ -139,3 +141,5 @@ echo "Installing TLP"
 echo | sudo add-apt-repository ppa:linrunner/tlp
 echo | sudo apt update
 echo "y\n" | sudo apt install tlp tlp-rdw
+
+trap finish EXIT
