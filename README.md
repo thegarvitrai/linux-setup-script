@@ -42,7 +42,8 @@ Running the script is quite easy & hassle free. Follow these instructions for sm
 ### Language Packages
  - Dart
  - Flutter
- - Gcc
+ - Gcc (C/C++)
  - Java
+ - Kotlin
  - NodeJS
  - Python

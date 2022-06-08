@@ -73,6 +73,11 @@ echo "Installing Java"
 asdf plugin-add java https://github.com/halcyon/asdf-java.git
 asdf install java latest
 
+# kotlin
+echo "Installing Kotlin"
+asdf plugin-add kotlin
+asdf install kotlin latest
+
 # node
 echo "Installing NodeJS"
 brew install gpg
